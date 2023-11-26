@@ -1,0 +1,57 @@
+name: dockercompose3048162673826117351
+services:
+  elasticsearch:
+    environment:
+      ELASTIC_PASSWORD: DkIedPPSCb
+      ELASTIC_USERNAME: elastic
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+    expose:
+    - "9200"
+    - "9200"
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    networks:
+      es-net: null
+    ports:
+    - mode: ingress
+      target: 9200
+      published: "9200"
+      protocol: tcp
+    volumes:
+    - type: volume
+      source: elasticsearch-data
+      target: /usr/share/elasticsearch/data
+      volume: {}
+  kibana:
+    depends_on:
+      elasticsearch:
+        condition: service_started
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    expose:
+    - "5601"
+    - "5601"
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    networks:
+      es-net: null
+    ports:
+    - mode: ingress
+      target: 5601
+      published: "5601"
+      protocol: tcp
+    volumes:
+    - type: volume
+      source: kibana-data
+      target: /usr/share/kibana/data
+      volume: {}
+networks:
+  es-net:
+    name: dockercompose3048162673826117351_es-net
+    driver: bridge
+volumes:
+  elasticsearch-data:
+    name: dockercompose3048162673826117351_elasticsearch-data
+    driver: local
+  kibana-data:
+    name: dockercompose3048162673826117351_kibana-data
+    driver: local
