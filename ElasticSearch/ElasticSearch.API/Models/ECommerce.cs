@@ -29,14 +29,5 @@ namespace ElasticSearch.API.Models
         [JsonPropertyName("products")]
         public Product[] Products { get; set; }
     }
-
-    public class Product
-    {
-        [JsonPropertyName("product_id")]
-        public long ProductId { get; set; }
-
-        [JsonPropertyName("product_name")]
-        public string ProductName { get; set; }
-
-    }
+     
 }

@@ -30,7 +30,7 @@ namespace ElasticSearch.API
         {
             
             services.AddControllers(); 
-            services.AddScoped<ECommerceRepository>();
+            services.AddScoped<IECommerceRepository, ECommerceRepository>();
             services.AddScoped<ElasticsearchClient>();
             services.AddSwaggerGen(c =>
             {

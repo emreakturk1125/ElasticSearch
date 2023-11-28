@@ -1,6 +1,7 @@
 ﻿using ElasticSearch.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ElasticSearch.API.Controllers
@@ -9,9 +10,9 @@ namespace ElasticSearch.API.Controllers
     [ApiController]
     public class ECommerceController : ControllerBase
     {
-        private readonly ECommerceRepository _repository;
+        private readonly IECommerceRepository _repository;
 
-        public ECommerceController(ECommerceRepository repository)
+        public ECommerceController(IECommerceRepository repository)
         {
             _repository = repository;
         }
@@ -20,6 +21,12 @@ namespace ElasticSearch.API.Controllers
         public async Task<IActionResult> TermQuery(string customerFirstName)
         {
             return Ok(await _repository.TermQuery(customerFirstName));      
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TermsQuery(List<string> customerFirstNameList)
+        {
+            return Ok(await _repository.TermsQuery(customerFirstNameList));
         }
     }
 }
