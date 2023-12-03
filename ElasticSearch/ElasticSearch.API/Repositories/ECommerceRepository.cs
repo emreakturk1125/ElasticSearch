@@ -18,7 +18,7 @@ namespace ElasticSearch.API.Repositories
             _client = client;
         }
 
-        public async Task<ImmutableList<ECommerce>> TermQuery(string customerFirstName)
+        public async Task<ImmutableList<ECommerce>> TermQueryAsync(string customerFirstName)
         {
             #region ElasticSearch veri Çekme 1. Yol 
             //var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Query(q => q.Term(t => t.Field("customer_first_name.keyword").Value(customerFirstName))));
@@ -40,7 +40,7 @@ namespace ElasticSearch.API.Repositories
             return result.Documents.ToImmutableList();
         }
 
-        public async Task<ImmutableList<ECommerce>> TermsQuery(List<string> customerFirstNameList)
+        public async Task<ImmutableList<ECommerce>> TermsQueryListAsync(List<string> customerFirstNameList)
         {
             List<FieldValue> terms = new List<FieldValue>();
 
@@ -68,6 +68,51 @@ namespace ElasticSearch.API.Repositories
             .Terms(new TermsQueryField(terms.AsReadOnly())))));
 
             #endregion
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+         
+        public async Task<ImmutableList<ECommerce>> PrefixQueryAsync(string customerFullName)
+        {
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(20).Query(q => q.Prefix(p => p.Field(f => f.CustomerFullName.Suffix("keyword")).Value(customerFullName))));
+            return result.Documents.ToImmutableList();
+        }
+
+        public async Task<ImmutableList<ECommerce>> RangeQueryAsync(double fromPrice, double toPrice)
+        {
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(20).Query(q => q.Range(r => r.NumberRange(nr => nr.Field(f => f.TaxfulTotalPrice).Gte(fromPrice).Lte(toPrice)))));
+            return result.Documents.ToImmutableList();
+        }
+        public async Task<ImmutableList<ECommerce>> MatchAllQueryAsync()
+        {
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(100).Query(q => q.MatchAll()));
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+
+        public async Task<ImmutableList<ECommerce>> PaginationQueryAsync(int page, int pageSize)
+        {
+            var pageFrom = (page - 1) * pageSize;
+
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
+                                                                                   .Size(pageSize)
+                                                                                   .From(pageFrom)
+                                                                                   .Query(q => q.MatchAll()));
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+
+        public async Task<ImmutableList<ECommerce>> WilCardQueryAsync(string customerFullName)
+        {   
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
+            .Query(q => q.Wildcard(w => w.Field(f => f.CustomerFullName.Suffix("keyword"))
+            .Wildcard(customerFullName))));
 
             foreach (var hit in result.Hits)
                 hit.Source.Id = hit.Id;

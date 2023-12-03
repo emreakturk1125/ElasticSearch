@@ -1,35 +1,57 @@
-name: dockercompose3048162673826117351
+name: dockercompose5132169785699562680
 services:
-  elasticsearch.api:
-    build:
-      context: C:\Users\emre.akturk\Documents\GitHub\Observability-With-Net-Core\ElasticSearch
-      dockerfile: ElasticSearch.API/Dockerfile
+  elasticsearch:
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: https://+:443;http://+:80
-    image: elasticsearchapi
+      ELASTIC_PASSWORD: DkIedPPSCb
+      ELASTIC_USERNAME: elastic
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+    expose:
+    - "9200"
+    - "9200"
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
     networks:
-      default: null
+      es-net: null
     ports:
     - mode: ingress
-      target: 80
-      protocol: tcp
-    - mode: ingress
-      target: 443
+      target: 9200
+      published: "9200"
       protocol: tcp
     volumes:
-    - type: bind
-      source: C:\Users\emre.akturk\AppData\Roaming/Microsoft/UserSecrets
-      target: /root/.microsoft/usersecrets
-      read_only: true
-      bind:
-        create_host_path: true
-    - type: bind
-      source: C:\Users\emre.akturk\AppData\Roaming/ASP.NET/Https
-      target: /root/.aspnet/https
-      read_only: true
-      bind:
-        create_host_path: true
+    - type: volume
+      source: elasticsearch-data
+      target: /usr/share/elasticsearch/data
+      volume: {}
+  kibana:
+    depends_on:
+      elasticsearch:
+        condition: service_started
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    expose:
+    - "5601"
+    - "5601"
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    networks:
+      es-net: null
+    ports:
+    - mode: ingress
+      target: 5601
+      published: "5601"
+      protocol: tcp
+    volumes:
+    - type: volume
+      source: kibana-data
+      target: /usr/share/kibana/data
+      volume: {}
 networks:
-  default:
-    name: dockercompose3048162673826117351_default
+  es-net:
+    name: dockercompose5132169785699562680_es-net
+    driver: bridge
+volumes:
+  elasticsearch-data:
+    name: dockercompose5132169785699562680_elasticsearch-data
+    driver: local
+  kibana-data:
+    name: dockercompose5132169785699562680_kibana-data
+    driver: local
