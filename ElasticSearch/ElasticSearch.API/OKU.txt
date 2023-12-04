@@ -1,0 +1,22 @@
+﻿Tokenization:
+------------------------------------------------
+
+Tanım: Tokenization, bir metni daha küçük parçalara, yani "token"lara ayırma sürecidir. Bir token, metindeki anlamlı bir birimi temsil eder. Bu bir kelime, bir cümle veya bir noktalama işareti olabilir.
+Örnek: "Merhaba, dünya!" cümlesi tokenlara ayrıldığında, örnek tokenlar şu şekilde olabilir: ["Merhaba", ",", "dünya", "!"]
+Normalization:
+
+Tanım: Normalization, metin verilerini standart bir formata getirme sürecidir. Bu, metin verilerindeki çeşitli değişiklikleri düzenlemeyi içerir, böylece benzer anlamlı ifadeler aynı temsil ediliyor ve işleme daha uygun hale geliyor.
+Örnek: Normalization, metin verilerindeki büyük küçük harf farklarını giderme, özel karakterleri temizleme, kelime köklerini bulma (stemming) veya eş anlamlı kelimeleri birleştirme (lemmatization) gibi işlemleri içerebilir.
+Örnek Uygulama:
+Bir metin üzerinde tokenization ve normalization uygulamak için şu adımları takip edebiliriz:
+
+Metin: "Bu bir örnek cümledir; cümlenin içinde kelimeler ve noktalama işaretleri bulunmaktadır."
+
+Tokenization:
+-----------------------------------
+["Bu", "bir", "örnek", "cümledir", ";", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır", "."]
+Normalization:
+
+Küçük harfe dönüştürme: ["bu", "bir", "örnek", "cümledir", ";", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır", "."]
+Noktalama işaretlerini temizleme: ["bu", "bir", "örnek", "cümledir", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır"]
+Lemmatization (kelime köklerini bulma): ["bu", "bir", "örnek", "cümle", "cümle", "iç", "kelime", "ve", "noktalama", "işaret", "bulunmak"]

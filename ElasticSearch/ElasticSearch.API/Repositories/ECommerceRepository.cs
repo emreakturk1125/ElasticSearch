@@ -29,9 +29,9 @@ namespace ElasticSearch.API.Repositories
             #endregion
 
             #region ElasticSearch veri Çekme 3. Yol 
-              
+
             var termQuery = new TermQuery("customer_first_name.keyword") { Value = customerFirstName, CaseInsensitive = true };
-            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Query(termQuery)); 
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Query(termQuery));
 
             #endregion
 
@@ -62,7 +62,7 @@ namespace ElasticSearch.API.Repositories
 
             var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(100)
             .Query(q => q
-            .Terms(f=>f
+            .Terms(f => f
             .Field(f => f.CustomerFirstName
             .Suffix("keyword"))
             .Terms(new TermsQueryField(terms.AsReadOnly())))));
@@ -73,7 +73,7 @@ namespace ElasticSearch.API.Repositories
                 hit.Source.Id = hit.Id;
             return result.Documents.ToImmutableList();
         }
-         
+
         public async Task<ImmutableList<ECommerce>> PrefixQueryAsync(string customerFullName)
         {
             var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(20).Query(q => q.Prefix(p => p.Field(f => f.CustomerFullName.Suffix("keyword")).Value(customerFullName))));
@@ -109,10 +109,48 @@ namespace ElasticSearch.API.Repositories
         }
 
         public async Task<ImmutableList<ECommerce>> WilCardQueryAsync(string customerFullName)
-        {   
+        {
             var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
             .Query(q => q.Wildcard(w => w.Field(f => f.CustomerFullName.Suffix("keyword"))
             .Wildcard(customerFullName))));
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+
+        public async Task<ImmutableList<ECommerce>> FuzzyQueryAsync(string customerName)
+        {
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
+                                                                                    .Query(q => q.Fuzzy(fu => fu.Field(f => f.CustomerFirstName.Suffix("keyword"))
+                                                                                    .Value(customerName)
+                                                                                    .Fuzziness(new Fuzziness(2))))
+                                                                                    .Sort(sort => sort.Field(f => f.TaxfulTotalPrice, new FieldSort() { Order = SortOrder.Desc })));
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+         
+        public async Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAsync(string categoryName)
+        {
+
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
+                                                                                    .Size(1000)
+                                                                                    .Query(q => q.Match(m => m.Field(f => f.Category).Query(categoryName))));
+
+            foreach (var hit in result.Hits)
+                hit.Source.Id = hit.Id;
+            return result.Documents.ToImmutableList();
+        }
+
+
+        public async Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAndOperatorAsync(string categoryName)
+        {
+
+            var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName)
+                                                                                    .Size(1000)
+                                                                                    .Query(q => q.Match(m => m.Field(f => f.Category).Query(categoryName).Operator(Operator.And))));
 
             foreach (var hit in result.Hits)
                 hit.Source.Id = hit.Id;

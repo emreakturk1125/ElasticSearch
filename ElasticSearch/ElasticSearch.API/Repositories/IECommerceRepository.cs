@@ -14,5 +14,8 @@ namespace ElasticSearch.API.Repositories
         Task<ImmutableList<ECommerce>> MatchAllQueryAsync();
         Task<ImmutableList<ECommerce>> PaginationQueryAsync(int page, int pageSize);
         Task<ImmutableList<ECommerce>> WilCardQueryAsync(string customerFullName);
+        Task<ImmutableList<ECommerce>> FuzzyQueryAsync(string customerName);
+        Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAsync(string categoryName);
+        Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAndOperatorAsync(string categoryName);
     }
 }
