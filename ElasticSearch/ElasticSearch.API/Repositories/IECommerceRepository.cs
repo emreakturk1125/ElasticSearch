@@ -17,5 +17,10 @@ namespace ElasticSearch.API.Repositories
         Task<ImmutableList<ECommerce>> FuzzyQueryAsync(string customerName);
         Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAsync(string categoryName);
         Task<ImmutableList<ECommerce>> MatchAllFullTextQueryAndOperatorAsync(string categoryName);
+        Task<ImmutableList<ECommerce>> MatchBoolPrefixFullTextQueryAsync(string categoryFullName);
+        Task<ImmutableList<ECommerce>> MatchPhraseFullTextQueryAsync(string categoryFullName);
+        Task<ImmutableList<ECommerce>> CompoundQueryExampleOneAsync(string cityName, double taxfulTotalPrice, string categoryName, string manufacturer);
+        Task<ImmutableList<ECommerce>> CompoundQueryExampleTwoAsync(string customerFullName);
+        Task<ImmutableList<ECommerce>> MultiMatchQueryExampleAsync(string name);
     }
 }
