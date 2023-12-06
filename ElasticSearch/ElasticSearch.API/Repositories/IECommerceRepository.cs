@@ -9,7 +9,7 @@ namespace ElasticSearch.API.Repositories
     {
         Task<ImmutableList<ECommerce>> TermQueryAsync(string customerFirstName);
         Task<ImmutableList<ECommerce>> TermsQueryListAsync(List<string> customerFirstNameList);
-        Task<ImmutableList<ECommerce>> PrefixQueryAsync(string customerFirstName);
+        Task<ImmutableList<ECommerce>> PrefixQueryAsync(string customerFullName);
         Task<ImmutableList<ECommerce>> RangeQueryAsync(double fromPrice, double toPrice);
         Task<ImmutableList<ECommerce>> MatchAllQueryAsync();
         Task<ImmutableList<ECommerce>> PaginationQueryAsync(int page, int pageSize);

@@ -5,7 +5,14 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{413866F0-9B33-416F-B52F-90A2DEBAB32D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch.API", "ElasticSearch.API\ElasticSearch.API.csproj", "{1C5B6C6E-FB18-4D3A-B478-8B27C64DFA53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch.API", "ElasticSearch.API\ElasticSearch.API.csproj", "{1C5B6C6E-FB18-4D3A-B478-8B27C64DFA53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch.Web", "..\ElasticSearch.Web\ElasticSearch.Web.csproj", "{F39079D1-5ACF-44F9-AE1E-4E55A0A33749}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OKU", "OKU", "{7675C2E5-8312-4B96-AD43-08C32112CD29}"
+	ProjectSection(SolutionItems) = preProject
+		ElasticSearch.API\OKU.txt = ElasticSearch.API\OKU.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{1C5B6C6E-FB18-4D3A-B478-8B27C64DFA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C5B6C6E-FB18-4D3A-B478-8B27C64DFA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C5B6C6E-FB18-4D3A-B478-8B27C64DFA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39079D1-5ACF-44F9-AE1E-4E55A0A33749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39079D1-5ACF-44F9-AE1E-4E55A0A33749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39079D1-5ACF-44F9-AE1E-4E55A0A33749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39079D1-5ACF-44F9-AE1E-4E55A0A33749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

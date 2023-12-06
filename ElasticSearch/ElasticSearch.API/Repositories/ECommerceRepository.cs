@@ -53,7 +53,7 @@ namespace ElasticSearch.API.Repositories
         /// <returns></returns>
         public async Task<ImmutableList<ECommerce>> TermsQueryListAsync(List<string> customerFirstNameList)
         {
-            List<FieldValue> terms = new List<FieldValue>();
+            var terms = new List<FieldValue>();
 
             customerFirstNameList.ForEach(x =>
             {
@@ -103,7 +103,7 @@ namespace ElasticSearch.API.Repositories
         /// <param name="toPrice"></param>
         /// <returns></returns>
         public async Task<ImmutableList<ECommerce>> RangeQueryAsync(double fromPrice, double toPrice)
-        {
+        { 
             var result = await _client.SearchAsync<ECommerce>(s => s.Index(indexName).Size(20).Query(q => q.Range(r => r.NumberRange(nr => nr.Field(f => f.TaxfulTotalPrice).Gte(fromPrice).Lte(toPrice)))));
             return result.Documents.ToImmutableList();
         }
