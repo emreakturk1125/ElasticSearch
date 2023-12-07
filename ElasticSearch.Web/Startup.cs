@@ -1,5 +1,6 @@
 using ElasticSearch.Web.Extensions;
 using ElasticSearch.Web.Repository;
+using ElasticSearch.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace ElasticSearch.Web
         {
             services.AddControllersWithViews(); 
             services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IBlogService, BlogService>();
             services.AddElastic(Configuration);
         }
          

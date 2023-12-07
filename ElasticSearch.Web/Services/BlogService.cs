@@ -2,6 +2,7 @@
 using ElasticSearch.Web.Repository;
 using ElasticSearch.Web.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ElasticSearch.Web.Services
@@ -22,10 +23,15 @@ namespace ElasticSearch.Web.Services
                 Title = model.Title,
                 UserId = Guid.NewGuid(),
                 Content = model.Content,
-                Tags = model.Tags.ToArray()
+                Tags = model.Tags.Split(",")
             };
             var isCreated = await _repository.SaveAsync(newBlog);
             return isCreated != null;
+        }
+
+        public  Task<List<Blog>> SearchAsync(string searchText)
+        {
+            return  _repository.SearchAsync(searchText);   
         }
     }
 }
