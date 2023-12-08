@@ -16,6 +16,11 @@ namespace ElasticSearch.Web.Services
             _repository = blogRepository;
         }
 
+        public async Task<List<Blog>> GetAll()
+        { 
+            return await _repository.GetAll();
+        }
+
         public async Task<bool> SaveAsync(BlogCreateViewModel model)
         {
             var newBlog = new Blog()
@@ -29,9 +34,9 @@ namespace ElasticSearch.Web.Services
             return isCreated != null;
         }
 
-        public  Task<List<Blog>> SearchAsync(string searchText)
+        public async Task<List<Blog>> SearchAsync(string searchText)
         {
-            return  _repository.SearchAsync(searchText);   
+            return await _repository.SearchAsync(searchText);   
         }
     }
 }

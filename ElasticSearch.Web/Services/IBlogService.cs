@@ -10,5 +10,6 @@ namespace ElasticSearch.Web.Services
     {
         Task<bool> SaveAsync(BlogCreateViewModel model);
         Task<List<Blog>> SearchAsync(string searchText);
+        Task<List<Blog>> GetAll();
     }
 }
