@@ -9,7 +9,7 @@ namespace ElasticSearch.Web.Services
     public interface IBlogService
     {
         Task<bool> SaveAsync(BlogCreateViewModel model);
-        Task<List<Blog>> SearchAsync(string searchText);
+        Task<List<BlogViewModel>> SearchAsync(string searchText);
         Task<List<Blog>> GetAll();
     }
 }

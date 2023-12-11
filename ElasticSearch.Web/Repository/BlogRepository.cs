@@ -11,8 +11,7 @@ namespace ElasticSearch.Web.Repository
     public class BlogRepository : IBlogRepository
     {
         private readonly ElasticsearchClient _elasticsearchClient; 
-        private const string indexName = "blog_index";
-
+        private const string indexName = "blog_index"; 
         public BlogRepository(ElasticsearchClient elasticsearchClient)
         {
             _elasticsearchClient = elasticsearchClient;
@@ -62,10 +61,7 @@ namespace ElasticSearch.Web.Repository
                                                                .Field(f => f.Title)
                                                                .Query(searchText));
 
-            Action<QueryDescriptor<Blog>> matchTags = (q) => q.MatchBoolPrefix(m => m
-                                                              .Field(f => f.Tags)
-                                                              .Query(searchText));
-
+            Action<QueryDescriptor<Blog>> matchTags = (q) => q.Term(t => t .Field(f => f.Tags).Value(searchText));    
             if (string.IsNullOrEmpty(searchText))
             {
                 listQuery.Add(matchAll);

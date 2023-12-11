@@ -3,6 +3,7 @@ using ElasticSearch.Web.Repository;
 using ElasticSearch.Web.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElasticSearch.Web.Services
@@ -34,9 +35,18 @@ namespace ElasticSearch.Web.Services
             return isCreated != null;
         }
 
-        public async Task<List<Blog>> SearchAsync(string searchText)
+        public async Task<List<BlogViewModel>> SearchAsync(string searchText)
         {
-            return await _repository.SearchAsync(searchText);   
+            var blogList = await _repository.SearchAsync(searchText); 
+            return blogList.Select(b => new BlogViewModel()
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Content = b.Content,
+                Created = b.Created.ToShortDateString(),
+                Tags = String.Join(",", b.Tags),
+                UserId = b.UserId.ToString()
+            }).ToList();  
         }
     }
 }

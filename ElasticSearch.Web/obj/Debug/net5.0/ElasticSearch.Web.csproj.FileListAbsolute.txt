@@ -122,3 +122,4 @@ C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch.Web\obj\Debug\
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch.Web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch.Web\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch.Web\obj\Debug\net5.0\Razor\Views\Blog\Search.cshtml.g.cs
+C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch.Web\obj\Debug\net5.0\Razor\Views\ECommerce\Search.cshtml.g.cs

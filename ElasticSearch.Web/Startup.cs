@@ -28,6 +28,8 @@ namespace ElasticSearch.Web
             services.AddControllersWithViews(); 
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IBlogService, BlogService>();
+            services.AddScoped<IECommerceRepository, ECommerceRepository>();
+            services.AddScoped<IECommerceService, ECommerceService>();
             services.AddElastic(Configuration);
         }
          

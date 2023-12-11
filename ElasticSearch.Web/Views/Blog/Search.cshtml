@@ -1,8 +1,9 @@
-﻿
+﻿@using ElasticSearch.Web.ViewModel
+
 @{
     ViewData["Title"] = "Search";
 }
-@model List<Blog>
+@model List<BlogViewModel>
 <div class="container">
     <div class="col-md-10 offset-md-1">
         <form asp-action="Search">
@@ -39,7 +40,7 @@
                     <th>@blog.Content</th>
                     <th>@blog.UserId</th>
                     <th>@String.Join(',',blog.Tags)</th>
-                    <th>@blog.Created.ToShortDateString()</th>
+                    <th>@blog.Created</th>
                 </tr>
             }
             </tbody>
