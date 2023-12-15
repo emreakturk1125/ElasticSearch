@@ -6,10 +6,12 @@ namespace ElasticSearch.Web.ViewModel
     public class ECommerceSearchViewModel
     {
         [Display(Name = "Category")]
-        public string Category { get; set; }
+        #nullable enable
+        public string? Category { get; set; }
 
-        [Display(Name = "Gender")] 
-        public string Gender { get; set; }
+        [Display(Name = "Gender")]
+        #nullable enable
+        public string? Gender { get; set; }
 
         [Display(Name = "Order Date (Start)")]
         [DataType(DataType.Date)]
@@ -20,7 +22,8 @@ namespace ElasticSearch.Web.ViewModel
         [DataType(DataType.Date)] 
         public DateTime? OrderDateEnd { get; set; }
 
-        [Display(Name = "Customer Full Name")] 
-        public string CustomerFullName { get; set; }
+        [Display(Name = "Customer Full Name")]
+        #nullable enable
+        public string? CustomerFullName { get; set; }
     }
 }

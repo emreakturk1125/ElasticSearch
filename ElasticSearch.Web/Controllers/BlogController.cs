@@ -50,5 +50,13 @@ namespace ElasticSearch.Web.Controllers
             return RedirectToAction(nameof(BlogController.Save));
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update()
+        {
+            var isSucces = await _blogService.UpdateAsync("fdgd",new Models.Blog());
+           
+            return null;
+        }
     }
 }

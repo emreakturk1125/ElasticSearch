@@ -9,5 +9,6 @@ namespace ElasticSearch.Web.Repository
         Task<Blog> SaveAsync(Blog newBlog);
         Task<List<Blog>> SearchAsync(string searchText);
         Task<List<Blog>> GetAll();
+        Task<Blog> UpdateAsync(string blogId, Blog updatedBlog);
     }
 }

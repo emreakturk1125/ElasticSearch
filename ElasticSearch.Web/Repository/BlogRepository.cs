@@ -4,7 +4,9 @@ using ElasticSearch.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ElasticSearch.Web.Repository
 {
@@ -39,6 +41,26 @@ namespace ElasticSearch.Web.Repository
             return newBlog;
         }
 
+        public async Task<Blog> UpdateAsync(string blogId, Blog updatedBlog)
+        { 
+            blogId = "7OkbRIwB0mDAsZl_lEI5"; 
+            var existingBlog = await _elasticsearchClient.GetAsync<Blog>(blogId, x => x.Index(indexName));
+
+            if (existingBlog.Source == null)
+            { 
+                return null;
+            } 
+            existingBlog.Source.Title = "Emre Title";
+            existingBlog.Source.Content = "Emre Content";
+            existingBlog.Source.Tags = new string[] {"emre","test"};
+
+             
+
+            //var updateResponse =  _elasticsearchClient.UpdateAsync<Blog>(blogId, u => u.Index(indexName).Doc(existingBlog.Source));
+             
+            return null;
+        }
+         
         /// <summary>
         /// Match             => aranılacak kelimeyi birebir arar ve sonucu getirir
         /// MatchBoolPrefix   => aranılacak kelimenin ilk birkaç harfi yazılsa da sonucu getirir. 

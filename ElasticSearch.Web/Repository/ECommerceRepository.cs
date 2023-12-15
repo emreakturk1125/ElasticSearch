@@ -72,6 +72,8 @@ namespace ElasticSearch.Web.Repository
 
         private async Task<(List<ECommerce> list, long count)> CalculateResultSet(int page, int pageSize, List<Action<QueryDescriptor<ECommerce>>> listQuery)
         {
+
+
             var pageFrom = (page - 1) * pageSize;
 
             var result = await _elasticsearchClient.SearchAsync<ECommerce>(s => s.Index(indexName)
@@ -82,7 +84,8 @@ namespace ElasticSearch.Web.Repository
 
             foreach (var hit in result.Hits)
                 hit.Source.Id = hit.Id;
-            return (result.Documents.ToList(), result.Total);
+            return (result.Documents.ToList(), (int)result.Total);
         }
+
     }
 }

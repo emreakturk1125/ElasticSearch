@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "qJA3GY9FDNSAAoOa9fMUcrXyfMk47wMInnRqxqc5+e1lJUG7rZZ3G6o5MmliLAKpVW79tB0u/z42+i5S/oKV6A==",
+  "dgSpecHash": "5bGwHw0R5MAktk2dtf9SrHWpoji44q6cAqEeyGIWKWcuOSOZQUdH2IpU63WbdK06GICBq+3x2Je/UNKPQOcCeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\emre.akturk\\Documents\\GitHub\\ElasticSearch\\ElasticSearch\\ElasticSearch.API\\ElasticSearch.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emre.akturk\\.nuget\\packages\\elastic.clients.elasticsearch\\8.11.0\\elastic.clients.elasticsearch.8.11.0.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\elastic.transport\\0.4.16\\elastic.transport.0.4.16.nupkg.sha512",
+    "C:\\Users\\emre.akturk\\.nuget\\packages\\elasticsearch.net\\7.17.5\\elasticsearch.net.7.17.5.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\emre.akturk\\.nuget\\packages\\nest\\7.17.5\\nest.7.17.5.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\emre.akturk\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

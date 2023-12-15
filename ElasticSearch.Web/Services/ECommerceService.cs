@@ -25,7 +25,7 @@ namespace ElasticSearch.Web.Services
             if (pageLinkCountCalculate == 0)
                 pageLinkCount = totalCount / pageSize;
             else
-                pageLinkCount = (pageLinkCount / pageSize) + 1;
+                pageLinkCount = (totalCount / pageSize) + 1;
 
             var eCommerListViewModel = eCommerList.Select(x => new ECommerceViewModel()
             {

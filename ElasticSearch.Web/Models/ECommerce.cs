@@ -21,10 +21,10 @@ namespace ElasticSearch.Web.Models
         public string Gender { get; set; } = null!;
 
         [JsonPropertyName("taxful_total_price")]
-        public double TaxfulTotalPrice { get; set; } 
+        public double TaxfulTotalPrice { get; set; }
 
-        [JsonPropertyName("category")] 
-        public string[] Category { get; set; }
+        [JsonPropertyName("category")]
+        public string[] Category { get; set; } = null!;
 
         [JsonPropertyName("order_id")] 
         public int OrderId { get; set; }

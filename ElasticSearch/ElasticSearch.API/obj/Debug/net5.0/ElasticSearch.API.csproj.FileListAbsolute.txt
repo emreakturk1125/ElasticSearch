@@ -66,3 +66,5 @@ C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.API\obj\Debug\net5.0\ElasticSearch.API.pdb
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.API\obj\Debug\net5.0\ElasticSearch.API.genruntimeconfig.cache
 C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.API\obj\Debug\net5.0\ref\ElasticSearch.API.dll
+C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.API\bin\Debug\net5.0\Elasticsearch.Net.dll
+C:\Users\emre.akturk\Documents\GitHub\ElasticSearch\ElasticSearch\ElasticSearch.API\bin\Debug\net5.0\Nest.dll

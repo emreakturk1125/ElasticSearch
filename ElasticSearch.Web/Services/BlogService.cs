@@ -48,5 +48,10 @@ namespace ElasticSearch.Web.Services
                 UserId = b.UserId.ToString()
             }).ToList();  
         }
+
+        public Task<Blog> UpdateAsync(string blogId, Blog updatedBlog)
+        {
+            return _repository.UpdateAsync(blogId, updatedBlog);    
+        }
     }
 }

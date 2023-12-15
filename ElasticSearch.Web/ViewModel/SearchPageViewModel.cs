@@ -13,9 +13,18 @@ namespace ElasticSearch.Web.ViewModel
         public long PageLinkCount { get; set; }
         public List<ECommerceViewModel> List { get; set; }
         public ECommerceSearchViewModel SearchViewModel { get; set; }
+
+        public int StartPage()
+        {
+            return Page - 6 <= 0 ? 1 : Page - 6;
+        } 
+        public long EndPage()
+        {
+            return Page + 6 >= PageLinkCount ? PageLinkCount : Page + 6;
+        }
         public string CreatePageUrl(HttpRequest request, int page, int pageSize)
         {
-            var currentUrl = new Uri($"{request.Scheme}://{request.Path}{request.QueryString}").AbsoluteUri;
+            var currentUrl = new Uri($"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}").AbsoluteUri;
             if (currentUrl.Contains("page",StringComparison.OrdinalIgnoreCase))
             {
                 currentUrl = currentUrl.Replace($"Page={Page}", $"Page={page}", StringComparison.OrdinalIgnoreCase);
@@ -24,7 +33,7 @@ namespace ElasticSearch.Web.ViewModel
             else
             {
                 currentUrl = $"{currentUrl}?Page={page}";
-                currentUrl = $"{currentUrl}?PageSize={pageSize}";
+                currentUrl = $"{currentUrl}&PageSize={pageSize}";
             }
             return currentUrl;
         }
