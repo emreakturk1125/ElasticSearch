@@ -1,0 +1,44 @@
+Elastic Search Nedir ?
+------------------------------------
+	Open Source olan bir arama motorudur. Java ile geliştirilmiştir.
+	Full text Search 
+	Aynı zamanda No Sql veritabanıdır. Json formatında verileri kaydeder.
+	Diğer No Sql veritabanlarından farkı aynı zamanda arama motoru olmasıdır
+	Hacimli datalarda arama yapılmak istendiği zaman en uygunudur.
+	Elastic Search herşeyi bütün kelimeleri index liyor. Bu yüzden hızlıdır.
+	Structured & Unstructered veriler üzerinde arama yapar.
+      Structured => Normal veritabanınada yapmış olduğumuz aramlardır
+      Unstructered => text üzerinde yapılan aramalrdır
+	En Önemli özelliği unstructured datalar üzerinde hızlıca arama yapabilmesidir
+
+NOT : 
+---------------
+	ELASTİC  VERSİON 7 YE KADAR OLANLARDA NEST KÜTÜPHANESİ
+	VERSİON 8 OLANLARDA İSE ELASTICSEARCH KÜTÜPHANESİ (Elastic.Clients.ElasticSearch) KULLANILMALIDIR
+	SIFIRDAN ELASTİC KURULDU İSE VERSİON 8 DİR VE ELASTICSEARCH KÜTÜPHANESİ KULLANILMALIDIR
+	AMA NEST KÜTÜPHANESİ VERSİON 8 İLE DE UYUMLUDUR, KULLANILABİLİR
+
+
+
+Tokenization:
+------------------------------------------------
+
+Tanım: Tokenization, bir metni daha küçük parçalara, yani "token"lara ayırma sürecidir. Bir token, metindeki anlamlı bir birimi temsil eder. Bu bir kelime, bir cümle veya bir noktalama işareti olabilir.
+Örnek: "Merhaba, dünya!" cümlesi tokenlara ayrıldığında, örnek tokenlar şu şekilde olabilir: ["Merhaba", ",", "dünya", "!"]
+Normalization:
+
+Tanım: Normalization, metin verilerini standart bir formata getirme sürecidir. Bu, metin verilerindeki çeşitli değişiklikleri düzenlemeyi içerir, böylece benzer anlamlı ifadeler aynı temsil ediliyor ve işleme daha uygun hale geliyor.
+Örnek: Normalization, metin verilerindeki büyük küçük harf farklarını giderme, özel karakterleri temizleme, kelime köklerini bulma (stemming) veya eş anlamlı kelimeleri birleştirme (lemmatization) gibi işlemleri içerebilir.
+Örnek Uygulama:
+Bir metin üzerinde tokenization ve normalization uygulamak için şu adımları takip edebiliriz:
+
+Metin: "Bu bir örnek cümledir; cümlenin içinde kelimeler ve noktalama işaretleri bulunmaktadır."
+
+Tokenization:
+-----------------------------------
+["Bu", "bir", "örnek", "cümledir", ";", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır", "."]
+Normalization:
+
+Küçük harfe dönüştürme: ["bu", "bir", "örnek", "cümledir", ";", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır", "."]
+Noktalama işaretlerini temizleme: ["bu", "bir", "örnek", "cümledir", "cümlenin", "içinde", "kelimeler", "ve", "noktalama", "işaretleri", "bulunmaktadır"]
+Lemmatization (kelime köklerini bulma): ["bu", "bir", "örnek", "cümle", "cümle", "iç", "kelime", "ve", "noktalama", "işaret", "bulunmak"]
