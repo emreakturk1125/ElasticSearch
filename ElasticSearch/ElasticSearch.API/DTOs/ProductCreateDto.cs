@@ -1,4 +1,5 @@
-﻿using ElasticSearch.API.Models.ModelsForNestLibrary;
+﻿using ElasticSearch.API.Enum;
+using ElasticSearch.API.Models.ModelsForNestLibrary;
 
 namespace ElasticSearch.API.DTOs
 {
@@ -15,7 +16,7 @@ namespace ElasticSearch.API.DTOs
                 {
                     Width = Feature.Width,
                     Height = Feature.Height,
-                    Color = Feature.Color
+                    Color = (EColor)int.Parse(Feature.Color)
                 }
             };
         }

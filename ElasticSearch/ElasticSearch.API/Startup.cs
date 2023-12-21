@@ -1,6 +1,7 @@
 ﻿using Elastic.Clients.Elasticsearch;
 using Elasticsearch.Net;
-using ElasticSearch.API.Extensions;
+using ElasticSearch.API.Extensions.ElasticClientsLİbrary;
+using ElasticSearch.API.Extensions.NestLibrary;
 using ElasticSearch.API.Models;
 using ElasticSearch.API.Repositories;
 using ElasticSearch.API.Services;
@@ -37,8 +38,9 @@ namespace ElasticSearch.API
         public void ConfigureServices(IServiceCollection services)
         { 
             services.AddControllers(); 
-            services.AddScoped<ElasticsearchClient>();                       // ElasticSearch yeni kütüphane 
-            services.AddElastic(Configuration);                              // Nest kütüphanesi
+            //services.AddScoped<ElasticsearchClient>();                       // ElasticSearch yeni kütüphane 
+            services.AddElasticNEST(Configuration);                              // Nest kütüphanesi 
+            services.AddElasticELASTIC(Configuration);                           // Elastic.Clients.Elasticsearch kütüphanesi 
 
             services.AddScoped<IECommerceRepository, ECommerceRepository>();
             services.AddScoped<IProductRepository, ProductRepository>(); 
